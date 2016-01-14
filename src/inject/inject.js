@@ -3,38 +3,71 @@ chrome.extension.sendMessage({}, function(response) {
 	if (document.readyState === "complete") {
 		clearInterval(readyStateCheckInterval);
 
-		// ----------------------------------------------------------
-		// This part of the script triggers when page is done loading
-		console.log("Hello. This message was sent from scripts/inject.js");
-		// ----------------------------------------------------------
-    console.log(init());
-		console.log('%c BRANNDAD SYSTEMS ', 'background: #004078; color: white');
+		console.log(' %c BRANDAD | SYSTEMS ', 'background: #004078; color: white');
+    init();
 
 	}
 	}, 10);
 });
 
-
-
 function removeAllCSSLinkElements() {
-	console.log("remove CSS done");
+	Array.prototype.forEach.call(document.querySelectorAll('style,[rel="stylesheet"],[type="text/css"]'),
+	function(element){
+		  try{
+		    	element.parentNode.removeChild(element);
+					showSuccessMessage("Remove CSS completed!");
+		  }catch(error){
+					showErrorMessage("Could not remove CSS! "+error);
+			}
+	});
 }
 
 function addLessFile(){
-	return "add Less File done";
+	try {
+		var lessFile = document.createElement('link');
+		lessFile.href=chrome.extension.getURL("src/stylesheets/less/main.less");
+		lessFile.type='text/css';
+		lessFile.rel='stylesheet/less';
+		document.getElementsByTagName('head')[0].appendChild(lessFile);
+		showSuccessMessage("Adding Less File completed!");
+	} catch (error) {
+		showErrorMessage("Could not add Less File! "+error);
+	}
 }
 
 function addLessCompiler() {
-	return "add Less Compiler done";
+	try {
+		lessDev=document.createElement('script');
+		lessDev.id='less-dev';
+		document.getElementsByTagName('head')[0].appendChild(lessDev);
+		var lessDevTag = document.getElementById('less-dev');
+		var lessDevContent = document.createTextNode("less = { env: \'development\'};");
+		lessDevTag.appendChild(lessDevContent);
+		lessScript = document.createElement('script');
+		lessScript.src=chrome.extension.getURL("js/less/less.js");
+		lessScript.type="text/javascript";
+		document.getElementsByTagName('head')[0].appendChild(lessScript);
+		showSuccessMessage("Adding Less Compiler completed!");
+	} catch (error) {
+		showErrorMessage("Could not add Less Compiler! "+error);
+	}
 }
 
 function init() {
 	removeAllCSSLinkElements();
 	addLessFile();
 	addLessCompiler();
-	return "init done";
+	showInfoMessage("BBC is ready!");
 }
 
-function test(isChecked) {
-	return isChecked ? "blabla true?" : "oder false?";
+function showErrorMessage(errorMessage) {
+	console.log('%c [BBC Error] '+errorMessage+' ', 'background: #FFEFEF; color: red');
+}
+
+function showSuccessMessage(successMessage) {
+	console.log('%c [BBC Success] '+successMessage+' ', 'background: #ebffcc; color: #639a0d');
+}
+
+function showInfoMessage(infoMessage) {
+	console.log('%c [BBC Information] '+infoMessage+' ', 'background: #ccf6ff; color: #0d819a');
 }

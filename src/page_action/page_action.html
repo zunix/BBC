@@ -1,17 +1,26 @@
-<!doctype html>
-<style type="text/css">
-	#mainPopup {
-		padding: 10px;
-		height: 200px;
-		width: 700px;
-		font-family: Helvetica, Ubuntu, Arial, sans-serif;
-	}
-	h1 {
-		font-size: 2em;
-	}
-</style>
-
-<div id="mainPopup">
-	<img src="brandad-systems.png" alt="Smiley face" height="40" width="231">
-<h1>Hallo!</h1>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		#mainPopup {
+			padding: 10px;
+			height: 200px;
+			width: 750px;
+		}
+	</style>
+	<link rel="stylesheet" href="../css/style.css">
+  <script type="text/javascript" src="../../js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="../../js/page_action/page_action.js"></script>
+</head>
+<body>
+	<div id="mainPopup">
+		<img src="brandad-systems.png" height="40" width="231">
+		<h1>Hallo!</h1>
+		<form action="demo_form.asp">
+		  First name: <input type="text" name="fname"><br>
+		  Last name: <input type="text" name="lname"><br>
+		  <input type="submit" value="Submit">
+		</form>
+	</div>
+</body>
+</html>

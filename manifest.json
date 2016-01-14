@@ -22,18 +22,23 @@
   },
   "permissions": [
     "tabs",
-    "<all_urls>",
+    "contextMenus",
     "http://127.0.0.1:8080/*"
   ],
   "content_scripts": [
     {
       "matches": [
-        "http://127.0.0.1:8080/*",
-        "<all_urls>"
+        "http://127.0.0.1:8080/*"
       ],
       "js": [
-        "src/inject/inject.js"
-      ]
+        "src/inject/inject.js",
+        "js/jquery/jquery.js"
+      ],
+      "run": "document_start"
     }
+  ],
+  "web_accessible_resources": [
+    "src/stylesheets/less/*",
+    "js/*"
   ]
 }
