@@ -16,7 +16,6 @@ chrome.extension.onMessage.addListener(
 function reloadChangesHandler(event) {
     console.log(event);
     console.log("moin reload");
-
 }
 
 function generateLessFile(event) {
@@ -24,9 +23,7 @@ function generateLessFile(event) {
     console.log("moin less");
 }
 
-
-
-function addContextMenu(argument) {
+function addContextMenu() {
   var showForPages = ["http://127.0.0.1:8080/*"];
   var reload = chrome.contextMenus.create({
     "title": "Reload Changes",
