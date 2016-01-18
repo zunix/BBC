@@ -1,8 +1,8 @@
 {
-  "name": "BBC less #CHANGEME",
-  "version": "0.0.1",
+  "name": "Brand Base Colorizing",
+  "version": "0.0.5",
   "manifest_version": 2,
-  "description": "This extension does stupid things! #CHANGEME",
+  "description": "This extension should not do stupid things! #CHANGEME",
   "homepage_url": "http://brandad-systems.de",
   "icons": {
     "16": "icons/icon16.png",
@@ -23,6 +23,7 @@
   "permissions": [
     "tabs",
     "contextMenus",
+    "storage",
     "http://127.0.0.1:8080/*"
   ],
   "content_scripts": [
@@ -31,14 +32,18 @@
         "http://127.0.0.1:8080/*"
       ],
       "js": [
-        "src/inject/inject.js",
-        "js/jquery/jquery.js"
+        "dist/content-scripts/utils/bbc_consoleMessages.min.js",
+        "dist/content-scripts/utils/bbc_domMagic.min.js",
+        "js/jquery/jquery.min.js",
+        "src/inject/bbc_init.js",
+        "src/inject/bbc_ExtensionEventHandler.js"
+
       ],
       "run": "document_start"
     }
   ],
   "web_accessible_resources": [
-    "src/stylesheets/less/*",
+    "src/stylesheets/*",
     "js/*"
   ]
 }
