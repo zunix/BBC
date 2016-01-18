@@ -1,7 +1,18 @@
 setTimeout(function() {
-    console.log("Hi from local storage handler!");
     loadLocalStorageFiles();
 }, 1);
+
+
+function greeting(){
+  less.modifyVars({
+    '@someColor': 'green'
+  });
+  console.log("success");
+}
+
+document.addEventListener('myCustomEvent', function(e) {
+  console.log(e);
+});
 
 
 window.addEventListener('storage', function(e) {
@@ -10,6 +21,7 @@ window.addEventListener('storage', function(e) {
   }
   console.log(e);
 },true);
+
 
 function changeColorVars(e) {
   var item = sessionStorage.getItem('bbc_color');

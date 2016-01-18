@@ -48,7 +48,7 @@ function addPageEventHandler() {
 		localStorageHandler = document.createElement('script');
 		localStorageHandler.src=chrome.extension.getURL("js/bbc_PageEventHandler.js");
 		localStorageHandler.type="text/javascript";
-		document.getElementsByTagName('body')[0].appendChild(localStorageHandler);
+		document.getElementsByTagName('head')[0].appendChild(localStorageHandler);
 		showSuccessMessage("injected bbc_PageEventHandler.js");
 	} catch (error) {
 		showErrorMessage("Could not injected bbc_PageEventHandler.js! "+error);

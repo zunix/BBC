@@ -33,7 +33,7 @@
       ],
       "js": [
         "dist/content-scripts/utils/bbc_consoleMessages.min.js",
-        "dist/content-scripts/utils/bbc_domMagic.min.js",
+        "dist/content-scripts/utils/bbc_domMagic.mini.js",
         "js/jquery/jquery.min.js",
         "src/inject/bbc_init.js",
         "src/inject/bbc_ExtensionEventHandler.js"
