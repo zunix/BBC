@@ -33,7 +33,7 @@
       ],
       "js": [
         "dist/content-scripts/utils/bbc_consoleMessages.min.js",
-        "dist/content-scripts/utils/bbc_domMagic.mini.js",
+        "src/inject/utils/bbc_domMagic.js",
         "js/jquery/jquery.min.js",
         "src/inject/bbc_init.js",
         "src/inject/bbc_ExtensionEventHandler.js"
@@ -44,6 +44,7 @@
   ],
   "web_accessible_resources": [
     "src/stylesheets/*",
-    "js/*"
+    "js/*",
+    "dist/web_accessible_resources/js/*"
   ]
 }

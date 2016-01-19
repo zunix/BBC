@@ -46,7 +46,7 @@ function addLessCompiler(devMode) {
 function addPageEventHandler() {
 	try {
 		localStorageHandler = document.createElement('script');
-		localStorageHandler.src=chrome.extension.getURL("js/bbc_PageEventHandler.js");
+		localStorageHandler.src=chrome.extension.getURL("dist/web_accessible_resources/js/bbc_PageEventHandler.min.js");
 		localStorageHandler.type="text/javascript";
 		document.getElementsByTagName('head')[0].appendChild(localStorageHandler);
 		showSuccessMessage("injected bbc_PageEventHandler.js");

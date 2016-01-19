@@ -1,48 +1,20 @@
-setTimeout(function() {
-    loadLocalStorageFiles();
-}, 1);
-
-
-function greeting(){
-  less.modifyVars({
-    '@someColor': 'green'
-  });
-  console.log("success");
+function updatePage(data) {
+  saveToSessionStorage(data);
+  changeLayoutColors();
+  changeImages();
 }
 
-document.addEventListener('myCustomEvent', function(e) {
-  console.log(e);
-});
-
-
-window.addEventListener('storage', function(e) {
-  if(e.key == 'bbc_color'){
-     changeColorVars(e);
-  }
-  console.log(e);
-},true);
-
-
-function changeColorVars(e) {
-  var item = sessionStorage.getItem('bbc_color');
-  if(item !== null && item !== ''){
-    console.log("New value ["+e.newValue+"]");
-    less.modifyVars({
-      '@someColor': e.newValue
-    });
-  } else {
-    console.log("ops bbc_color is null or not set :(");
-  }
+function saveToSessionStorage(data) {
+  sessionStorage.setItem('bbc_data',data);
 }
 
-function loadLocalStorageFiles() {
-  var item = sessionStorage.getItem('bbc_color');
-  if(item !== null && item !== ''){
-    console.log("Load: ["+item+"]");
-    less.modifyVars({
-      '@someColor': item
-    });
-  } else {
-    console.log("ops bbc_color is null or not set :(");
-  }
+function changeLayoutColors(){
+  var bbc_object = JSON.parse(sessionStorage.getItem('bbc_data'));
+  less.modifyVars(bbc_object.bbc_colors);
+}
+
+function changeImages(){
+  var bbc_object = JSON.parse(sessionStorage.getItem('bbc_data'));
+  console.log(bbc_object.bbc_logo_url);
+  console.log(bbc_object.bbc_background_url);
 }

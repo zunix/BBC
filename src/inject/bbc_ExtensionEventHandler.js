@@ -27,11 +27,29 @@
 // // Dispatch the event.
 // bbc_tag.dispatchEvent(bbc_ext_event);
 
-function magicalTree() {
-    location.href="javascript:greeting(); void 0";
+function magicalTree(hexColor) {
+    location.href="javascript:greeting('"+hexColor+"'); void 0";
     //do magic here!
 }
 
+function dispatchChangeEvent(data) {
+  location.href="javascript:updatePage('"+data+"'); void 0";
+}
+
+chrome.runtime.onMessage.addListener(
+  function (request,sender) {
+      console.log(request);
+      console.log(sender);
+      if(request.pewpew == 'poi poi'){
+        var hexColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+        magicalTree(hexColor);
+      }
+
+      if(request.changeEvent){
+        dispatchChangeEvent(request.changeEvent);
+      }
+  }
+);
 
 var evt = document.createEvent('Event');
 evt.initEvent('myCustomEvent', true, false);

@@ -1,40 +1,76 @@
-// if you checked "fancy-settings" in extensionizr.com, uncomment this lines
+init();
 
-// var settings = new Store("settings", {
-//     "sample_setting": "This is how you use Store.js to remember values"
-// });
 
-//example of using a message handler from the inject scripts
-chrome.extension.onMessage.addListener(
-  function(request, sender, sendResponse) {
-  	chrome.pageAction.show(sender.tab.id);
-    sendResponse();
-  },
-  addContextMenu()
-);
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if (tab.url && tab.url.indexOf('http://127.0.0.1:8080/') === 0) {
+        chrome.pageAction.show(tabId);
 
-function reloadChangesHandler(event) {
-    console.log(event);
-    console.log("moin reload");
+    }
+});
+
+
+
+chrome.extension.onMessage.addListener(function(request,sender){
+    console.log(sender);
+    console.log(request);
+    returnMessageToContentScript(request.message);
+
+});
+
+
+function returnMessageToContentScript(reply) {
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+    chrome.tabs.sendMessage(tabs[0].id, {changeEvent : reply}, function(response) {});
+  });
 }
 
-function generateLessFile(event) {
-    console.log(event);
-    console.log("moin less");
-}
 
 function addContextMenu() {
   var showForPages = ["http://127.0.0.1:8080/*"];
   var reload = chrome.contextMenus.create({
     "title": "Reload Changes",
     "contexts": ["page"],
-    "onclick" : reloadChangesHandler,
+    "onclick" : reloadPage,
     "documentUrlPatterns":showForPages
   });
-  var Test = chrome.contextMenus.create({
-    "title": "Test",
+
+  var createLessFile = chrome.contextMenus.create({
+    "title": "Create Less File",
     "contexts": ["page"],
     "onclick" : generateLessFile,
     "documentUrlPatterns":showForPages
   });
+}
+
+function reloadPage() {
+    chrome.tabs.getSelected(null, function(tab) {
+      var code = 'window.location.reload();';
+      chrome.tabs.executeScript(tab.id, {code: code});
+    });
+}
+
+function generateLessFile(event) {
+  returnMessageToContentScript(sessionStorage.getItem('bbc_data'));
+  console.warn("#TODO");
+}
+
+function addSessionStorage() {
+  var bbc_object = {
+        "version" : "0.1",
+        "bbc_colors": {
+          "@someColor": "black",
+          "@testColor": "#121212"
+        },
+        "bbc_logo_url": "http://aaaaa",
+        "bbc_background_url": "http://bbbbbb"
+  };
+
+  sessionStorage.setItem("bbc_data", JSON.stringify(bbc_object));
+
+}
+
+
+function init() {
+    addContextMenu();
+    addSessionStorage();
 }
