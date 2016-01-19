@@ -5,15 +5,15 @@ function updatePage(data) {
 }
 
 function saveToSessionStorage(data) {
-  sessionStorage.setItem('bbc_data',data);
+  sessionStorage.setItem('bbc_data', data);
 }
 
-function changeLayoutColors(){
+function changeLayoutColors() {
   var bbc_object = JSON.parse(sessionStorage.getItem('bbc_data'));
   less.modifyVars(bbc_object.bbc_colors);
 }
 
-function changeImages(){
+function changeImages() {
   var bbc_object = JSON.parse(sessionStorage.getItem('bbc_data'));
   console.log(bbc_object.bbc_logo_url);
   console.log(bbc_object.bbc_background_url);
