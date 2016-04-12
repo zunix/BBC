@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "bbc-plugin",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "test Description",
+    "description": "The description of the application"
+  }
+}

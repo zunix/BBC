@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "bbc-plugin Deutsch",
+    "description": "application Deutsch"
+  },
+  "appDescription": {
+    "message": "Description Deutsch",
+    "description": "description Deutsch"
+  },
+  "version": {
+    "message": "",
+    "description": ""
+  }
+}

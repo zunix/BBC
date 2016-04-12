@@ -1,0 +1,307 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- build:css styles/popup-vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link href="styles/main.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <style>
+
+      :root{
+        --primary-color: #003F7C;
+        --secondary-color: rgba(255, 192, 1, 0.55);
+        --button-bg-color: red;
+      }
+
+      html{
+        overflow: auto;
+      }
+      body{
+        font-family: "BAS Open Sans";
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 740px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+      }
+
+      /* Let's get this party started */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background: rgba(62, 100, 112, 0.8);
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+      }
+      ::-webkit-scrollbar-thumb:window-inactive {
+        background: rgba(50, 90, 104, 0.25);
+      }
+
+      header{
+        font-weight: bold;
+        font-size: 2.25em;
+        color: var(--primary-color);
+
+      }
+
+      nav{
+        margin: 0px;
+        font-size: 1.50em;
+      }
+
+      ul.tabs{
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+      }
+      ul.tabs li{
+        background: none;
+        color: #222;
+        display: inline-block;
+        padding: 10px 15px;
+        cursor: pointer;
+      }
+
+      ul.tabs li.current{
+        background: #ECECEB;
+        color: #222;
+      }
+
+      .tab-content{
+        display: none;
+        background: #ECECEB;
+        padding: 15px;
+      }
+
+      .tab-content.current{
+        display: inherit;
+      }
+
+      .content{
+        background-color: var(--secondary-color);
+        font-size: 1.25em;
+      }
+
+      a:link    { color: black; text-decoration: none; }
+      a:visited { color: black; text-decoration: none;}
+
+      .tab-active {
+        background-color: #0b97c4;
+      }
+
+      header{
+        padding-bottom: 16px;
+      }
+
+      footer{
+        text-align: right;
+      }
+
+      footer > a:hover {
+        color: #F8C776;
+      }
+
+      #downloadlink:hover {
+        color: #F8C776;
+      }
+
+      .color-content{
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .color-box{
+        margin: 8px;
+      }
+
+      .color-window{
+        background-color: #0b97c4;
+        min-width: 160px;
+        max-width: 160px;
+        min-height: 90px;
+      }
+
+      .color-info{
+        display: flex;
+        flex-direction: column;
+        padding-top: 8px;
+        font-size: 0.9em;
+        flex-wrap: nowrap;
+      }
+
+      .color-title{
+        font-weight: bold;
+      }
+
+      .color-var-name{
+      }
+
+      .color-value{
+        color: #000000;
+        position: relative;
+        padding-top: 60px;
+        padding-right: 8px;
+        text-align: right;
+      }
+
+      .input{
+        box-sizing: content-box; display: block; width: 264px; height: 30px; margin: 0px 0px 13px; padding: 4px 8px 3px; line-height: 15px; border: 1px solid #003f7c; border-radius: 0px; box-shadow: none; font-family: Verdana, Geneva, sans-serif; font-size: 13px; color: rgb(0, 0, 0); background: none rgb(255, 255, 255);
+      }
+
+      .flex-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .export{
+        padding-top: 8px;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+      }
+
+      .export-button{
+        color: white;
+        margin-left: 8px;
+        margin-right: 16px;
+        padding: 8px;
+        background-color: #F59B15;
+      }
+
+      .center-me{
+        max-width: 50%;
+      }
+
+      .button{
+        color: #ffffff; font-weight: bold; font-family: Verdana, Geneva, sans-serif; font-size: 14px; padding: 8px 15px 0px 15px; line-height: 0px; background-color: #F59B15;
+      }
+
+    </style>
+  </head>
+  <body>
+    <header>Brand Base Colorizing </header>
+    <nav>
+      <ul class="tabs">
+        <li class="tab-link current" data-tab="tab-1">Farben</li>
+        <li class="tab-link" data-tab="tab-2">Logo & Hintergrund</li>
+        <li class="tab-link" data-tab="tab-3">Export</li>
+      </ul>
+    </nav>
+    <div class="content">
+      <div id="tab-1" class="tab-content current">
+        <div class="color-content">
+          <div class="color-box">
+            <div class="color-window color"><div class="color-value">#0b97c4</div></div>
+            <div class="color-info">
+              <div class="color-title">Name</div>
+              <div class="color-var-name">Primary Color</div>
+            </div>
+          </div>
+          <div class="color-box">
+            <div class="color-window"><div class="color-value">#0b97c4</div></div>
+            <div class="color-info">
+              <div class="color-title">Name</div>
+              <div class="color-var-name">Primary Color</div>
+            </div>
+          </div>
+          <div class="color-box">
+            <div class="color-window"><div class="color-value">#0b97c4</div></div>
+            <div class="color-info">
+              <div class="color-title">Name</div>
+              <div class="color-var-name">Primary Color</div>
+            </div>
+          </div>
+          <div class="color-box">
+            <div class="color-window"><div class="color-value">#0b97c4</div></div>
+            <div class="color-info">
+              <div class="color-title">Name</div>
+              <div class="color-var-name">Primary Color</div>
+            </div>
+          </div>
+          <div class="color-box">
+            <div class="color-window"><div class="color-value">#0b97c4</div></div>
+            <div class="color-info">
+              <div class="color-title">Name</div>
+              <div class="color-var-name">Primary Color</div>
+            </div>
+          </div>
+          <div class="color-box">
+            <div class="color-window"><div class="color-value">#0b97c4</div></div>
+            <div class="color-info">
+              <div class="color-title">Name</div>
+              <div class="color-var-name">Primary Color</div>
+            </div>
+          </div>
+          <div class="color-box">
+            <div class="color-window"><div class="color-value">#0b97c4</div></div>
+            <div class="color-info">
+              <div class="color-title">Name</div>
+              <div class="color-var-name">Primary Color</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-2" class="tab-content">
+        <div class="flex-container">
+          <form action="" class="center-me">
+            <label>Logo
+              <input type="text" class="input" value="http://">
+            </label>
+            <label>Hintergrundbild
+              <input type="text" class="input" value="http://">
+            </label>
+          </form>
+        </div>
+      </div>
+      <div id="tab-3" class="tab-content">
+        <div class="flex-container">
+          <div class="">
+            <textarea id="textbox" style="min-width: 650px; min-height: 350px;">Type something here</textarea>
+            <div class="export">
+            <div id="create" class="export-button">exportieren</div>
+            <a download="color.less" id="downloadlink" style="display: none">Download</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <a href="http://www.brandad-systems.de/impressum" target="_blank">Impressum</a>
+    </footer>
+
+
+
+    <!-- build:js scripts/popup-vendor.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/popup.js -->
+    <script type="text/javascript" src="scripts/jquery-2.2.3.min.js"></script>
+    <script src="scripts/popup.js"></script>
+    <script>
+
+
+    </script>
+    <!-- endbuild -->
+  </body>
+</html>
